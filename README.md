@@ -22,3 +22,5 @@ an IDE of your choice (I used IntelliJ).  It can also be done via the terminal.
 
 4.  The automated tests can be run by either using the mvn test command when in the application's parent directory 
 or running the test directory if you are using an IDE.   
+
+Note:  Some thoughts I had as I wrote this application can be found in the GitHub commit history.
