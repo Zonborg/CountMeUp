@@ -3,17 +3,28 @@ package uk.bbc.countmeup.main;
 import java.util.stream.IntStream;
 
 public class Election {
-    String[] canditates = {"Red", "Blue", "Yellow", "Green", "Purple"};
-    int[] votes = {0, 0, 0, 0, 0};
+    String[] canditates;
+    int[] votes;
+
+    public Election() {
+        canditates = new String[]{"Red", "Blue", "Yellow", "Green", "Purple"};
+        votes = new int[]{0, 0, 0, 0, 0};
+    }
+
+    public Election(String[] userCandidates) {
+        canditates = userCandidates;
+        votes = new int[canditates.length];
+    }
 
 
     public void vote(String canditateName){
         boolean success = false;
         for(int i = 0; i< canditates.length; i++){
-            if(canditateName.equals(canditates[i]))
+            if(canditateName.toLowerCase().equals(canditates[i].toLowerCase()))
             {
                 votes[i] += 1;
                 success = true;
+                System.out.println("Vote Successful");
             }
         }
 
@@ -28,14 +39,14 @@ public class Election {
         for (int i =0; i < canditates.length; i++)
         {
             buildOutput.append(canditates[i]);
-            buildOutput.append("    ");
+            buildOutput.append("        ");
             buildOutput.append(votes[i]);
             buildOutput.append("\n");
         }
         return buildOutput.toString();
     }
 
-    public String displayVotePercentage(){
+    public String getVotePercentage(){
         StringBuilder buildOutput = new StringBuilder();
         buildOutput.append("candidate   percentage\n");
         for (int i =0; i < canditates.length; i++)
@@ -43,7 +54,7 @@ public class Election {
             int totalVotes = IntStream.of(votes).sum();
             int canditatePercentage = votes[i]/totalVotes*100;
             buildOutput.append(canditates[i]);
-            buildOutput.append("    ");
+            buildOutput.append("        ");
             buildOutput.append(canditatePercentage);
             buildOutput.append("\n");
 
@@ -51,13 +62,8 @@ public class Election {
         return buildOutput.toString();
     }
 
-    public void displayCanditateNames(){
-        StringBuilder buildOutput = new StringBuilder();
-        buildOutput.append("candidate   count");
-        for (int i =0; i < canditates.length; i++)
-        {
-           System.out.println(canditates[i]);
-        }
+    public String[] getCanditateNames(){
+        return canditates;
     }
 
     public String[] getCanditates(){
