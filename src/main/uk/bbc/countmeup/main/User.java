@@ -29,12 +29,4 @@ public class User {
         this.votes += 1;
     }
 
-    public boolean voteValid(){
-        if(votes  < 3){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 }

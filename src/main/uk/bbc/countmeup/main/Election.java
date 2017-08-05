@@ -17,23 +17,26 @@ public class Election {
     }
 
 
-    public void vote(String canditateName){
-        boolean success = false;
-        for(int i = 0; i< canditates.length; i++){
-            if(canditateName.toLowerCase().equals(canditates[i].toLowerCase()))
-            {
+    public boolean vote(String candidateName, User user) {
+        boolean isSuccessful = false;
+        if (!voteValid(user)) {
+            System.out.println("Vote Invalid.  You have already voted the maximum amount of times for this election.");
+            return isSuccessful;
+        }
+        for (int i = 0; i < canditates.length; i++) {
+            if (candidateName.toLowerCase().equals(canditates[i].toLowerCase())) {
                 votes[i] += 1;
-                success = true;
+                isSuccessful = true;
+                user.incrementVote();
                 System.out.println("Vote Successful");
+                return isSuccessful;
             }
         }
-
-        if(success == false) {
-            System.out.println("Candidate not found.");
-        }
+        return isSuccessful;
     }
 
-    public String displayVoteCount(){
+
+    public String getVoteCount(){
         StringBuilder buildOutput = new StringBuilder();
         buildOutput.append("candidate   count\n");
         for (int i =0; i < canditates.length; i++)
@@ -51,11 +54,11 @@ public class Election {
         buildOutput.append("candidate   percentage\n");
         for (int i =0; i < canditates.length; i++)
         {
-            int totalVotes = IntStream.of(votes).sum();
-            int canditatePercentage = votes[i]/totalVotes*100;
+            double totalVotes = IntStream.of(votes).sum();
+            double candidatePercentage = (votes[i]/totalVotes)*100;
             buildOutput.append(canditates[i]);
             buildOutput.append("        ");
-            buildOutput.append(canditatePercentage);
+            buildOutput.append(candidatePercentage);
             buildOutput.append("\n");
 
         }
@@ -64,6 +67,14 @@ public class Election {
 
     public String[] getCanditateNames(){
         return canditates;
+    }
+
+    private boolean voteValid(User user){
+        if(user.getVotes() < 3){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String[] getCanditates(){

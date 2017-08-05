@@ -46,10 +46,9 @@ public class UserInterface {
             }
 
             String vote = scanner.next();
-            generalElection.vote(vote);
+            generalElection.vote(vote, newUser);
             newUser.incrementVote();
-            newUser.voteValid();
-            System.out.println(generalElection.displayVoteCount());
+            System.out.println(generalElection.getVoteCount());
             System.out.println(generalElection.getVotePercentage());
             System.out.print("Would you like to vote again?  yes or no");
             String anotherVote = scanner.next().toLowerCase();

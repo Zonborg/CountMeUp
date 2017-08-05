@@ -31,19 +31,6 @@ public class UserTest {
         assertEquals(1, sut.getVotes());
     }
 
-    @Test
-    public void voteValidShouldReturnTrueIfUserHasVotedLessThanThreeTimes(){
-        sut.incrementVote();
-        assertEquals(true, sut.voteValid());
-    }
-
-    @Test
-    public void voteValidShouldReturnFalseIfUserHasVotedThreeTimes(){
-        sut.incrementVote();
-        sut.incrementVote();
-        sut.incrementVote();
-        assertEquals(false, sut.voteValid());
-    }
 
 
 }
