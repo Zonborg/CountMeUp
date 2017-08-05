@@ -1,5 +1,8 @@
 package uk.bbc.countmeup.main;
 
+/**
+ * A class that runs a default election in which there are 1,000,000 users (voters)
+ */
 public class SimulatedElection {
 
     public static void main (String[] args){

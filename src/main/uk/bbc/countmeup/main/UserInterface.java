@@ -2,6 +2,10 @@ package uk.bbc.countmeup.main;
 
 import java.util.Scanner;
 
+/**
+ * A class which represents the basic user interface of the application.  The user will be prompted at various times for
+ * input which will be used to generate an election as well as to vote for their preferred candidate.
+ */
 public class UserInterface {
 
     public static void main (String[] args){
@@ -33,6 +37,13 @@ public class UserInterface {
         }
     }
 
+    /**
+     * A method to run an election.  This private method was created to avoid any duplication of code.
+     * @param generalElection The election being held
+     * @param newUser The user who is voting
+     * @param valid the validity check for user input
+     * @return a boolean on whether the vote has been successful
+     */
     private static boolean runElection(Election generalElection, User newUser, boolean valid) {
         boolean voteAgain = true;
         Scanner scanner = new Scanner(System.in);
